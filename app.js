@@ -98,7 +98,7 @@ $("pub").onclick=async function(){
  j.lat=pubLoc.lat;j.lng=pubLoc.lng;
  $("pub").disabled=true;
  var r=await sb.from("jobs").insert(j);$("pub").disabled=false;
- if(r.error){f.textContent="مقدرناش ننشر الإعلان، اتأكد من البيانات وحاول تاني";return}
+ if(r.error){f.textContent="مقدرناش ننشر الإعلان: "+(r.error.message||r.error.code||"");return}
  ["t","d","p","ad"].forEach(function(i){$(i).value=""});pubLoc=null;$("locOk").textContent="";goDash()};
 /* ===== بصمة PeterParker: خيوط وعناكب وبارتكلز ===== */
 (function(){
