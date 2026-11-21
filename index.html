@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>شغلانة - شغل قريب منك</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f1ff;--card:rgba(255,255,255,.72);--tx:#14122b;--mu:#6b6890;--pr:#6d4aff;--pr2:#22d3ee;--pk:#ff4d8d;--bd:rgba(109,74,255,.16);--wa:#16a34a;--sh:0 10px 40px rgba(80,50,200,.14);--in:rgba(255,255,255,.8)}
+@media (prefers-color-scheme:dark){:root{--bg:#0a0818;--card:rgba(28,24,56,.62);--tx:#f4f2ff;--mu:#a29ec9;--bd:rgba(160,140,255,.2);--sh:0 10px 40px rgba(0,0,0,.5);--in:rgba(10,8,24,.6)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Cairo,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.7;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bg i{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:fl 18s ease-in-out infinite alternate}
+.bg i:nth-child(1){width:420px;height:420px;background:var(--pr);top:-120px;right:-80px}
+.bg i:nth-child(2){width:360px;height:360px;background:var(--pr2);bottom:10%;left:-100px;animation-delay:-6s}
+.bg i:nth-child(3){width:300px;height:300px;background:var(--pk);top:45%;right:-60px;animation-delay:-11s;opacity:.3}
+@keyframes fl{to{transform:translate(-60px,70px) scale(1.2)}}
+.w{max-width:720px;margin:0 auto;padding:16px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:6px 0 16px}
+.logo{font-weight:900;font-size:26px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.logo b{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--pr),var(--pr2));font-size:20px;box-shadow:0 6px 18px rgba(109,74,255,.45)}
+.logo span{background:linear-gradient(90deg,var(--pr),var(--pk));-webkit-background-clip:text;background-clip:text;color:transparent}
+.view{animation:up .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(22px)}}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#5b3df5,#8b5cf6 50%,#22d3ee);color:#fff;border-radius:30px;padding:38px 24px 30px;text-align:center;box-shadow:var(--sh);margin-bottom:20px}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 0,rgba(255,255,255,.28),transparent 45%);pointer-events:none}
+.hero h1{margin:0 0 8px;font-size:clamp(26px,7vw,38px);font-weight:900;line-height:1.3;position:relative}
+.hero p{margin:0 0 18px;opacity:.95;position:relative}
+.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:relative}
+.stat{background:rgba(255,255,255,.2);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);border-radius:16px;padding:8px 16px;font-size:13px}
+.stat b{display:block;font-size:22px;line-height:1.2}
+.choice{display:grid;gap:14px}
+.big{position:relative;display:flex;align-items:center;gap:16px;background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--bd);border-radius:24px;padding:20px;font:inherit;color:inherit;cursor:pointer;text-align:right;box-shadow:var(--sh);transition:.25s}
+.big:hover{transform:translateY(-4px) scale(1.01);border-color:var(--pr);box-shadow:0 16px 50px rgba(109,74,255,.3)}
+.big:active{transform:scale(.98)}
+.ic{flex:none;width:62px;height:62px;border-radius:18px;display:grid;place-items:center;font-size:30px;background:linear-gradient(135deg,rgba(109,74,255,.2),rgba(34,211,238,.25))}
+.big b{display:block;font-size:19px}.big span{color:var(--mu);font-size:14px}
+.big::after{content:"‹";margin-inline-start:auto;font-size:30px;color:var(--pr);transition:.25s}
+.big:hover::after{transform:translateX(-6px)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px;text-align:center}
+.steps div{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:12px 6px;font-size:13px;color:var(--mu);backdrop-filter:blur(10px)}
+.steps em{display:block;font-style:normal;font-size:24px}
+.back{background:var(--card);border:1px solid var(--bd);color:var(--pr);font:inherit;font-weight:700;cursor:pointer;padding:6px 14px;border-radius:99px;margin-bottom:12px}
+.search{position:relative;margin-bottom:14px}
+.search input{padding-inline-start:44px;border-radius:99px;box-shadow:var(--sh)}
+.search::before{content:"🔎";position:absolute;inset-inline-start:16px;top:50%;transform:translateY(-50%)}
+.card{background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--bd);border-radius:24px;padding:18px;margin-bottom:14px;box-shadow:var(--sh)}
+.job{animation:up .5s both;position:relative;transition:.25s}
+.job:hover{transform:translateY(-3px);border-color:var(--pr)}
+.jh{display:flex;gap:14px;align-items:center}
+.jh .ic{width:52px;height:52px;font-size:26px;border-radius:16px}
+.jh h3{margin:0;font-size:19px}
+.price{margin-inline-start:auto;font-weight:800;color:var(--pr);font-size:14px;text-align:left;white-space:nowrap}
+.jd{margin:10px 0 0;color:var(--mu);font-size:15px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.tag{background:var(--in);border:1px solid var(--bd);border-radius:99px;padding:3px 12px;font-size:13px;color:var(--mu)}
+.dist{color:#fff;background:linear-gradient(135deg,var(--pr),var(--pk));border:0;font-weight:700}
+.wa{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:0;border-radius:16px;padding:14px;font:inherit;font-weight:800;text-decoration:none;cursor:pointer;margin-top:6px;box-shadow:0 8px 22px rgba(22,163,74,.35);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 8px 34px rgba(34,197,94,.65)}}
+label{display:block;margin:14px 0 5px;font-weight:700;font-size:14px}
+input,textarea{width:100%;padding:13px 16px;border:1px solid var(--bd);border-radius:16px;background:var(--in);color:var(--tx);font:inherit;transition:.2s}
+input:focus,textarea:focus{outline:0;border-color:var(--pr);box-shadow:0 0 0 4px rgba(109,74,255,.18)}
+.btn{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--pr),#9b6dff);color:#fff;border:0;border-radius:16px;padding:14px 16px;font:inherit;font-weight:800;cursor:pointer;margin-top:18px;width:100%;box-shadow:0 8px 24px rgba(109,74,255,.4);transition:.2s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.98)}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:sh 3.5s infinite}
+@keyframes sh{to{left:140%}}
+.btn.s{background:var(--in);color:var(--pr);border:1px solid var(--pr);box-shadow:none}.btn.s::after{display:none}
+.tabs{display:flex;background:var(--in);border-radius:16px;padding:5px;margin-bottom:4px}
+.tabs button{flex:1;border:0;background:none;padding:11px;border-radius:12px;font:inherit;font-weight:700;color:var(--mu);cursor:pointer;transition:.2s}
+.tabs button.on{background:linear-gradient(135deg,var(--pr),#9b6dff);color:#fff;box-shadow:0 4px 14px rgba(109,74,255,.4)}
+.note{color:var(--mu);font-size:13px;text-align:center;margin:10px 0}
+.err{color:#e11d48;font-size:14px;min-height:20px;margin-top:6px;font-weight:600}
+.hide{display:none!important}
+textarea.out{font-family:monospace;direction:ltr;font-size:12px}
+.empty{text-align:center;padding:30px;color:var(--mu)}
+.empty b{display:block;font-size:46px}
+.foot{position:relative;height:210px;margin-top:44px;background:linear-gradient(180deg,#0b0820,#1d0a33 70%,#2a0b3d);border-radius:34px 34px 0 0;overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none}
+.foot canvas{position:absolute;inset:0;width:100%;height:100%}
+.made{position:absolute;inset:auto 0 42px;text-align:center;font-family:Cairo,sans-serif;font-weight:900;font-size:clamp(24px,7vw,38px);color:#fff;direction:ltr;pointer-events:none;letter-spacing:.5px;text-shadow:0 0 20px rgba(255,255,255,.2)}
+.made b{background:linear-gradient(90deg,#ff2d3d,#ff5d6a 40%,#3b7bff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px rgba(255,45,61,.6));animation:gl 3s ease-in-out infinite alternate}
+@keyframes gl{to{filter:drop-shadow(0 0 22px rgba(59,123,255,.9))}}
+.hint{position:absolute;bottom:12px;inset-inline:0;text-align:center;font-size:12px;color:rgba(255,255,255,.55);pointer-events:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<script>
+/* ===== حط بيانات مشروعك من Supabase هنا (Project Settings > API) ===== */
+var SUPABASE_URL = "PUT_YOUR_PROJECT_URL_HERE";
+var SUPABASE_KEY = "PUT_YOUR_ANON_PUBLIC_KEY_HERE";
+</script>
+<div class="bg"><i></i><i></i><i></i></div>
+<div class="w">
+<div class="nav"><div class="logo" id="logo"><b>💼</b><span>شغلانة</span></div></div>
+
+<div id="home" class="view">
+  <div class="hero"><h1>لاقي شغلك الأقرب ليك 🚀</h1><p>شغلانات حقيقية حواليك، وكلم صاحب الشغل بضغطة واتساب</p>
+    <div class="stats"><div class="stat"><b id="cnt">0</b>شغلانة متاحة</div><div class="stat"><b>📍</b>الأقرب ليك أولًا</div><div class="stat"><b>⚡</b>من غير تسجيل</div></div></div>
+  <div class="choice">
+    <button class="big" id="pickSeek"><div class="ic">🔍</div><div><b>أنا بدور على شغل</b><span>شوف الشغلانات القريبة منك</span></div></button>
+    <button class="big" id="pickEmp"><div class="ic">🧑‍💼</div><div><b>أنا صاحب شغل</b><span>سجّل دخول وانشر إعلانك</span></div></button>
+  </div>
+  <div class="steps"><div><em>📍</em>حدد موقعك</div><div><em>👀</em>اختار شغلانة</div><div><em>💬</em>كلمه واتساب</div></div>
+</div>
+
+<div id="seek" class="hide view">
+  <button class="back" data-back>← رجوع</button>
+  <div class="search"><input id="q" placeholder="دوّر: كاشير، سواق، نجار..."></div>
+  <div id="locMsg" class="note"></div>
+  <div id="list"></div>
+</div>
+
+<div id="auth" class="hide view">
+  <button class="back" data-back>← رجوع</button>
+  <div class="card">
+    <div class="tabs"><button id="tLogin" class="on">تسجيل دخول</button><button id="tReg">حساب جديد</button></div>
+    <div id="nameBox" class="hide">
+      <label>الاسم / اسم المحل</label><input id="aName" autocomplete="name">
+      <label>رقم الواتساب</label><input id="aPhone" type="tel" inputmode="tel" placeholder="01012345678" autocomplete="tel">
+    </div>
+    <label>الإيميل</label><input id="aMail" type="email" dir="ltr" autocomplete="email">
+    <label>كلمة السر (6 حروف على الأقل)</label><input id="aPass" type="password" autocomplete="current-password">
+    <div class="err" id="aErr"></div>
+    <button class="btn" id="aGo">دخول</button>
+    <p class="note" id="aNote"></p>
+  </div>
+</div>
+
+<div id="dash" class="hide view">
+  <button class="back" data-back>← الرئيسية</button>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h2 id="hello" style="margin:6px 0"></h2><button class="back" id="out" style="margin:0">خروج</button></div>
+  <button class="btn" id="newAd">＋ إعلان جديد</button>
+  <h3>إعلاناتي</h3>
+  <div id="mine"></div>
+</div>
+
+<div id="form" class="hide view">
+  <button class="back" id="backDash">← إعلاناتي</button>
+  <div class="card">
+    <h3>إعلان جديد</h3>
+    <label>اسم الشغلانة</label><input id="t" maxlength="80" placeholder="مثال: كاشير في سوبر ماركت">
+    <label>التفاصيل</label><textarea id="d" rows="3" maxlength="1000" placeholder="المهام، المواعيد، المتطلبات"></textarea>
+    <label>الأجر</label><input id="p" maxlength="60" placeholder="مثال: 4000 جنيه شهريًا">
+    <label>رقم الواتساب</label><input id="ph" type="tel" inputmode="tel">
+    <label>مكان الشغل</label><input id="ad" maxlength="120" placeholder="مثال: فيصل، الجيزة">
+    <button class="btn s" id="getLoc">📍 استخدم موقعي الحالي</button>
+    <div id="locOk" class="note"></div>
+    <div class="err" id="fErr"></div>
+    <button class="btn" id="pub">نشر الإعلان</button>
+  </div>
+</div>
+</div>
+
+<footer class="foot" id="foot"><canvas id="web"></canvas><div class="made">Made By <b>PeterParker</b></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+var sb=null,user=null,jobs=[],myLoc=null,pubLoc=null,mode="login";
+try{if(/^https?:\/\//.test(SUPABASE_URL))sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY)}catch(e){}
+function $(i){return document.getElementById(i)}
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+var VIEWS=["home","seek","auth","dash","form"];
+function show(id){VIEWS.forEach(function(x){var e=$(x);e.classList.toggle("hide",x!==id);if(x===id){e.style.animation="none";e.offsetWidth;e.style.animation=""}});window.scrollTo(0,0)}
+function norm(p){return String(p).replace(/[\u0660-\u0669]/g,function(c){return c.charCodeAt(0)-1632}).replace(/[\u06F0-\u06F9]/g,function(c){return c.charCodeAt(0)-1776}).replace(/\D/g,"")}
+function intl(p){var n=norm(p);if(n.indexOf("0")===0)n="20"+n.slice(1);return n}
+function km(a,b,c,d){var R=6371,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r;var h=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)*Math.sin(y/2);return 2*R*Math.asin(Math.sqrt(h))}
+function waLink(n,m){return "https://wa.me/"+n+"?text="+encodeURIComponent(m)}
+function icon(t){var m=[[/كاشير|بيع|محاسب/,"🛒"],[/سائق|سواق|توصيل|دليفري/,"🛵"],[/نجار|حداد|سباك|كهرباء|عامل|فني/,"🛠️"],[/سكرتير|مكتب|إدار/,"💼"],[/طباخ|شيف|مطعم|كافيه|جرسون/,"👨‍🍳"],[/مدرس|معلم|تدريس/,"📚"],[/أمن|حارس/,"🛡️"],[/تنظيف|نظافة/,"🧹"]];
+ for(var i=0;i<m.length;i++)if(m[i][0].test(t))return m[i][1];return "💼"}
+function arErr(x){var m=(x&&x.message||"").toLowerCase();
+ if(m.indexOf("invalid login")>=0)return "الإيميل أو كلمة السر غلط";
+ if(m.indexOf("not confirmed")>=0)return "لازم تأكد الإيميل الأول من الرسالة اللي وصلتك";
+ if(m.indexOf("already")>=0)return "الإيميل ده مسجل قبل كده، سجّل دخول";
+ if(m.indexOf("rate")>=0||m.indexOf("seconds")>=0)return "حاولت كتير، استنى شوية وجرب تاني";
+ if(m.indexOf("valid email")>=0||m.indexOf("invalid")>=0)return "اتأكد من الإيميل";
+ return "حصلت مشكلة، حاول تاني"}
+function locate(ok,fail){if(!navigator.geolocation){fail();return}navigator.geolocation.getCurrentPosition(function(p){ok({lat:p.coords.latitude,lng:p.coords.longitude})},fail,{timeout:10000})}
+
+async function loadJobs(){
+ if(!sb){return "setup"}
+ var r=await sb.from("jobs").select("*").eq("is_open",true).order("created_at",{ascending:false}).limit(300);
+ if(r.error)return "error";jobs=r.data||[];return "ok"}
+function render(){
+ var q=$("q").value.trim().toLowerCase();
+ var arr=jobs.filter(function(j){return !q||(j.title+" "+j.details+" "+j.address).toLowerCase().indexOf(q)>=0}).map(function(j){return Object.assign({},j,{dist:myLoc?km(myLoc.lat,myLoc.lng,j.lat,j.lng):null})});
+ if(myLoc)arr.sort(function(a,b){return a.dist-b.dist});
+ $("list").innerHTML=arr.length?arr.map(function(j,i){
+  var m="السلام عليكم، أنا عايز أشتغل شغلانة \""+j.title+"\" اللي معروضة على موقع شغلانة، وموافق عليها.";
+  return '<div class="card job" style="animation-delay:'+Math.min(i,8)*70+'ms"><div class="jh"><div class="ic">'+icon(j.title)+'</div><h3>'+esc(j.title)+'</h3><div class="price">'+esc(j.pay||"")+'</div></div><p class="jd">'+esc(j.details)+'</p><div class="meta"><span class="tag">📍 '+esc(j.address)+'</span>'
+  +(j.dist!=null?'<span class="tag dist">'+j.dist.toFixed(1)+' كم منك</span>':'')+'</div><a class="wa" target="_blank" rel="noopener" href="'+waLink(intl(j.phone),m)+'">💬 عايز أشتغل الشغلانة دي</a></div>'}).join(""):'<div class="empty"><b>🔭</b>مفيش شغلانات مناسبة دلوقتي</div>'}
+function countUp(n){var c=0,e=$("cnt");if(!n){e.textContent="0";return}var step=Math.max(1,Math.round(n/20));
+ var iv=setInterval(function(){c=Math.min(n,c+step);e.textContent=c;if(c>=n)clearInterval(iv)},50)}
+loadJobs().then(function(){countUp(jobs.length)});
+
+$("logo").onclick=function(){show("home")};
+document.querySelectorAll("[data-back]").forEach(function(b){b.onclick=function(){show("home")}});
+$("q").oninput=render;
+$("pickSeek").onclick=async function(){show("seek");myLoc=null;$("list").innerHTML="";$("locMsg").textContent="جاري تحميل الشغلانات...";
+ var st=await loadJobs();
+ if(st==="setup"){$("locMsg").textContent="الموقع لسه مش متربط بـ Supabase (راجع الإعدادات في index.html).";return}
+ if(st==="error"){$("locMsg").textContent="مقدرناش نحمّل الشغلانات، جرب تاني.";return}
+ $("locMsg").textContent="جاري تحديد موقعك...";render();
+ locate(function(l){myLoc=l;$("locMsg").textContent="📍 مرتبة من الأقرب للأبعد";render()},function(){$("locMsg").textContent="مقدرناش نحدد موقعك، فبنعرض كل الشغلانات."})};
+
+function setMode(m){mode=m;$("tLogin").classList.toggle("on",m==="login");$("tReg").classList.toggle("on",m==="reg");
+ $("nameBox").classList.toggle("hide",m==="login");$("aGo").textContent=m==="login"?"دخول":"إنشاء حساب";$("aErr").textContent="";$("aPass").autocomplete=m==="login"?"current-password":"new-password"}
+$("tLogin").onclick=function(){setMode("login")};$("tReg").onclick=function(){setMode("reg")};
+$("pickEmp").onclick=async function(){
+ if(!sb){show("auth");$("aErr").textContent="الموقع لسه مش متربط بـ Supabase.";return}
+ var r=await sb.auth.getSession();user=r.data.session?r.data.session.user:null;
+ if(user)goDash();else{setMode("login");$("aNote").textContent="";show("auth")}};
+$("aGo").onclick=async function(){
+ var e=$("aErr");e.textContent="";$("aNote").textContent="";
+ if(!sb){e.textContent="الموقع لسه مش متربط بـ Supabase.";return}
+ var mail=$("aMail").value.trim(),pw=$("aPass").value;
+ if(!mail||pw.length<6){e.textContent="اكتب إيميل صحيح وكلمة سر 6 حروف على الأقل";return}
+ var nm="",ph="";
+ if(mode==="reg"){nm=$("aName").value.trim();ph=norm($("aPhone").value);if(!nm||ph.length<10){e.textContent="اكتب الاسم ورقم الواتساب";return}}
+ $("aGo").disabled=true;
+ try{
+  var r;
+  if(mode==="reg"){r=await sb.auth.signUp({email:mail,password:pw,options:{data:{name:nm,phone:ph},emailRedirectTo:location.origin+location.pathname}});
+   if(r.error)throw r.error;
+   if(!r.data.session){setMode("login");$("aNote").textContent="📧 بعتنالك إيميل تأكيد، افتحه وبعدين سجّل دخول.";return}}
+  else{r=await sb.auth.signInWithPassword({email:mail,password:pw});if(r.error)throw r.error}
+  user=r.data.user;$("aPass").value="";goDash();
+ }catch(x){e.textContent=arErr(x)}finally{$("aGo").disabled=false}};
+$("out").onclick=async function(){try{await sb.auth.signOut()}catch(x){}user=null;show("home")};
+
+function goDash(){var md=user.user_metadata||{};$("hello").textContent="أهلًا "+(md.name||"")+" 👋";show("dash");loadMine()}
+async function loadMine(){
+ $("mine").innerHTML='<p class="note">جاري التحميل...</p>';
+ var r=await sb.from("jobs").select("*").eq("owner",user.id).order("created_at",{ascending:false});
+ if(r.error){$("mine").innerHTML='<p class="note">مقدرناش نحمّل إعلاناتك، جرب تاني.</p>';return}
+ var arr=r.data||[];
+ $("mine").innerHTML=arr.length?arr.map(function(j){
+  return '<div class="card"><div class="jh"><div class="ic">'+icon(j.title)+'</div><h3>'+esc(j.title)+'</h3><span class="tag" style="margin-inline-start:auto">'+(j.is_open?"🟢 شغال":"⚪ اتقفل")+'</span></div><div class="meta"><span class="tag">💰 '+esc(j.pay||"-")+'</span><span class="tag">📍 '+esc(j.address)+'</span></div>'
+  +(j.is_open?'<button class="btn s" data-close="'+j.id+'">✅ لقيت حد يشتغل - إلغاء الإعلان</button>':'')+'</div>'}).join(""):'<div class="empty"><b>📭</b>لسه ما نشرتش إعلانات</div>';
+ document.querySelectorAll("[data-close]").forEach(function(b){b.onclick=async function(){
+  if(!confirm("متأكد إنك لقيت حد؟ الإعلان هيختفي من الموقع."))return;
+  b.disabled=true;var u=await sb.from("jobs").update({is_open:false}).eq("id",b.dataset.close);
+  if(u.error)alert("حصلت مشكلة، حاول تاني");loadMine()}})}
+$("newAd").onclick=function(){$("ph").value=(user.user_metadata||{}).phone||"";show("form")};
+$("backDash").onclick=goDash;
+$("getLoc").onclick=function(){$("locOk").textContent="جاري التحديد...";
+ locate(function(l){pubLoc=l;$("locOk").textContent="✅ تم تحديد الموقع"},function(){$("locOk").textContent="تعذر تحديد الموقع، اسمح للمتصفح بالوصول للموقع."})};
+$("pub").onclick=async function(){
+ var f=$("fErr");f.textContent="";
+ var j={title:$("t").value.trim(),details:$("d").value.trim(),pay:$("p").value.trim(),phone:norm($("ph").value),address:$("ad").value.trim()};
+ if(j.title.length<2||j.address.length<2||j.phone.length<10||!pubLoc){f.textContent="اكتب اسم الشغلانة والرقم والمكان وحدد موقعك";return}
+ j.lat=pubLoc.lat;j.lng=pubLoc.lng;
+ $("pub").disabled=true;
+ var r=await sb.from("jobs").insert(j);$("pub").disabled=false;
+ if(r.error){f.textContent="مقدرناش ننشر الإعلان، اتأكد من البيانات وحاول تاني";return}
+ ["t","d","p","ad"].forEach(function(i){$(i).value=""});pubLoc=null;$("locOk").textContent="";goDash()};
+/* ===== بصمة PeterParker: خيوط وعناكب وبارتكلز ===== */
+(function(){
+var cv=$("web"),cx=cv.getContext("2d"),foot=$("foot"),W=0,H=0,P=[],S=[],run=false,raf=0,t0=0;
+var still=window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches;
+var COL=["#ff2d3d","#3b7bff","#ffffff","#ff7a85"];
+function size(){var r=cv.getBoundingClientRect(),d=window.devicePixelRatio||1;W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);
+ S=[[.1,60,0],[.27,100,1.7],[.73,80,3.1],[.9,115,4.6]].map(function(a){return{x:a[0]*W,base:a[1],ph:a[2]}})}
+function web(ox,dir){var R=Math.min(W*.36,170),n=7,k=4,i,j;cx.strokeStyle="rgba(255,255,255,.28)";cx.lineWidth=1;
+ for(i=0;i<=n;i++){var a=Math.PI/2*i/n;cx.beginPath();cx.moveTo(ox,0);cx.lineTo(ox+dir*Math.cos(a)*R,Math.sin(a)*R);cx.stroke()}
+ for(j=1;j<=k;j++){var r=R*j/k;cx.beginPath();for(i=0;i<=n;i++){var a2=Math.PI/2*i/n,px=ox+dir*Math.cos(a2)*r,py=Math.sin(a2)*r;
+  if(i===0)cx.moveTo(px,py);else{var am=Math.PI/2*(i-.5)/n,cxp=ox+dir*Math.cos(am)*r*.86,cyp=Math.sin(am)*r*.86;cx.quadraticCurveTo(cxp,cyp,px,py)}}cx.stroke()}}
+function spider(x,y,t){cx.strokeStyle="#ddd";cx.lineWidth=1.4;
+ for(var s=-1;s<=1;s+=2)for(var i=0;i<4;i++){var o=(i-1.5)*5,w=Math.sin(t*6+i)*2;cx.beginPath();cx.moveTo(x,y);cx.lineTo(x+s*(10+i*2),y+o+w-4);cx.lineTo(x+s*(17+i*2),y+o+w+6);cx.stroke()}
+ cx.fillStyle="#ff2d3d";cx.beginPath();cx.ellipse(x,y+3,8,10,0,0,7);cx.fill();
+ cx.fillStyle="#1b2a8a";cx.beginPath();cx.ellipse(x,y-7,5.5,5.5,0,0,7);cx.fill();
+ cx.fillStyle="#fff";cx.fillRect(x-4,y-9,3,3);cx.fillRect(x+1,y-9,3,3)}
+function burst(x,y){var n=34,i;for(i=0;i<n;i++){var a=Math.random()*6.283,v=1.5+Math.random()*6;
+ P.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1.5,l:1,d:.012+Math.random()*.012,c:COL[i%4],s:2+Math.random()*3.5,g:i%7===0})}
+ if(!run)start()}
+function draw(ts){t0=ts/1000;cx.clearRect(0,0,W,H);web(0,1);web(W,-1);
+ S.forEach(function(s){var y=s.base+(still?0:Math.sin(t0*1.3+s.ph)*26);cx.strokeStyle="rgba(255,255,255,.55)";cx.lineWidth=1;cx.beginPath();cx.moveTo(s.x,0);cx.lineTo(s.x,y-10);cx.stroke();spider(s.x,y,t0)});
+ for(var i=P.length-1;i>=0;i--){var p=P[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.vx*=.99;p.l-=p.d;
+  if(p.l<=0){P.splice(i,1);continue}cx.globalAlpha=p.l;
+  if(p.g){cx.font="16px serif";cx.fillText("🕷️",p.x,p.y)}else{cx.fillStyle=p.c;cx.shadowColor=p.c;cx.shadowBlur=8;cx.beginPath();cx.arc(p.x,p.y,p.s*p.l+.5,0,7);cx.fill();cx.shadowBlur=0}}
+ cx.globalAlpha=1}
+function loop(ts){draw(ts);if(run&&(!still||P.length))raf=requestAnimationFrame(loop);else run=false}
+function start(){if(run)return;run=true;raf=requestAnimationFrame(loop)}
+function stop(){run=false;cancelAnimationFrame(raf)}
+size();draw(0);window.addEventListener("resize",function(){size();draw(t0*1000)});
+if("IntersectionObserver" in window)new IntersectionObserver(function(e){if(e[0].isIntersecting&&!still)start();else if(!P.length)stop()}).observe(foot);else if(!still)start();
+foot.addEventListener("pointerdown",function(e){var r=cv.getBoundingClientRect();burst(e.clientX-r.left,e.clientY-r.top)});
+})();
+</script>
+</body>
+</html>
